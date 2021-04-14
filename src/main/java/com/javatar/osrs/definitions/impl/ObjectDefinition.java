@@ -110,6 +110,7 @@ public class ObjectDefinition implements Definition {
         isHollow = hollow;
     }
 
+    @Override
     public String getName() {
         return name;
     }
@@ -442,4 +443,6 @@ public class ObjectDefinition implements Definition {
     public int getDefinitionId() {
         return this.id;
     }
+
+
 }

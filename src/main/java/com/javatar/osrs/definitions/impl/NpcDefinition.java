@@ -60,6 +60,7 @@ public class NpcDefinition implements Definition {
     public int[] configs;
     public int varbitId = -1;
     public int varpIndex = -1;
+    public int category = 0;
     public boolean isInteractable = true;
     public boolean rotationFlag = true;
     public boolean isPet;
@@ -72,5 +73,10 @@ public class NpcDefinition implements Definition {
     @Override
     public int getDefinitionId() {
         return this.id;
+    }
+
+    @Override
+    public String getName() {
+        return name;
     }
 }

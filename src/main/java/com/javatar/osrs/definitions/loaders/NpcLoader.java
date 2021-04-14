@@ -75,6 +75,8 @@ public class NpcLoader implements DeserializeDefinition<NpcDefinition> {
             def.rotate180Animation = stream.readUnsignedShort();
             def.rotate90RightAnimation = stream.readUnsignedShort();
             def.rotate90LeftAnimation = stream.readUnsignedShort();
+        } else if(opcode == 18) {
+            def.category = stream.readUnsignedShort();
         } else if (opcode >= 30 && opcode < 35) {
             def.actions[opcode - 30] = stream.readString();
             if (def.actions[opcode - 30].equalsIgnoreCase("Hidden")) {

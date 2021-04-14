@@ -58,6 +58,10 @@ public class InputStream extends java.io.InputStream {
         return (this.readUnsignedByte() << 16) + (this.readUnsignedByte() << 8) + this.readUnsignedByte();
     }
 
+    public int read24BitIntMiddle() {
+        return (this.readUnsignedByte() << 16) + (this.readUnsignedByte()) + (this.readUnsignedByte() << 8);
+    }
+
     public void skip(int length) {
         int pos = buffer.position();
         pos += length;

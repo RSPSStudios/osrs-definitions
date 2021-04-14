@@ -110,6 +110,7 @@ public class ItemDefinition implements Definition {
         return id;
     }
 
+    @Override
     public String getName() {
         return name;
     }
@@ -500,6 +501,5 @@ public class ItemDefinition implements Definition {
     public int getDefinitionId() {
         return this.id;
     }
-
 
 }
