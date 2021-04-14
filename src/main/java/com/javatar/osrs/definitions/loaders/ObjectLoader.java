@@ -215,6 +215,8 @@ public class ObjectLoader implements DeserializeDefinition<ObjectDefinition> {
             def.setContouredGround(is.readUnsignedByte() * 256);
         } else if (opcode == 82) {
             def.setMapAreaId(is.readUnsignedShort());
+        } else if(opcode == 89) {
+            def.setRandomizeAnimStart(true);
         } else if (opcode == 92) {
             int varpID = is.readUnsignedShort();
             if (varpID == 0xFFFF) {

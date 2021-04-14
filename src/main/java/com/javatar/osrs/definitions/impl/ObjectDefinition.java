@@ -75,8 +75,16 @@ public class ObjectDefinition implements Definition {
     private int anInt2112 = 0;
     private int anInt2113 = 0;
     private boolean blocksProjectile = true;
+    private boolean randomizeAnimStart;
     private Map<Integer, Object> params = null;
 
+    public boolean isRandomizeAnimStart() {
+        return randomizeAnimStart;
+    }
+
+    public void setRandomizeAnimStart(boolean randomizeAnimStart) {
+        this.randomizeAnimStart = randomizeAnimStart;
+    }
 
     public int getId() {
         return id;
