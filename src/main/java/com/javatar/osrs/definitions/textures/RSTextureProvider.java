@@ -21,7 +21,6 @@ public class RSTextureProvider {
         this.maxSize = 20;
         this.size = this.maxSize;
         this.brightness = 0.8D;
-        this.width = 128;
 
         int max = -1;
         for (TextureDefinition textureDefinition : textureProvider.values()) {
