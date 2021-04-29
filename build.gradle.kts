@@ -4,6 +4,7 @@ plugins {
     java
     `maven-publish`
     kotlin("jvm") version "1.4.32"
+    id("org.openjfx.javafxplugin") version "0.0.9"
 }
 
 group = "com.javatar"
@@ -11,6 +12,11 @@ version = "0.1"
 
 repositories {
     mavenCentral()
+}
+
+javafx {
+    version = "16"
+    modules("javafx.graphics")
 }
 
 dependencies {

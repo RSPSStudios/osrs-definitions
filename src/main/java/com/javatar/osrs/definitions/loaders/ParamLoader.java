@@ -44,6 +44,7 @@ public class ParamLoader implements DeserializeDefinition<ParamDefinition> {
                 case 1: {
                     int idx = b.readByte();
                     def.setType(ScriptVarType.forCharKey((char) idx));
+                    def.setRawType((char) idx);
                     break;
                 }
                 case 2:

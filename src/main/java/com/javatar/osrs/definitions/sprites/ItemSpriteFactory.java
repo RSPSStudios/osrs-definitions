@@ -10,11 +10,49 @@ import com.javatar.osrs.definitions.impl.models.FaceNormal;
 import com.javatar.osrs.definitions.impl.models.VertexNormal;
 import com.javatar.osrs.definitions.model.Model;
 import com.javatar.osrs.definitions.textures.RSTextureProvider;
+import javafx.scene.image.PixelBuffer;
 
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.nio.IntBuffer;
 
 public class ItemSpriteFactory {
+
+    private DefinitionProvider<ItemDefinition> itemProvider;
+    private DefinitionProvider<ModelDefinition> modelProvider;
+    private DefinitionProvider<SpriteGroupDefinition> spriteProvider;
+    private DefinitionProvider<TextureDefinition> textureProvider;
+
+    private PixelBuffer<IntBuffer> pixelBuffer;
+
+    public ItemSpriteFactory(DefinitionProvider<ItemDefinition> itemProvider, DefinitionProvider<ModelDefinition> modelProvider, DefinitionProvider<SpriteGroupDefinition> spriteProvider, DefinitionProvider<TextureDefinition> textureProvider) {
+        this.itemProvider = itemProvider;
+        this.modelProvider = modelProvider;
+        this.spriteProvider = spriteProvider;
+        this.textureProvider = textureProvider;
+    }
+
+    public ItemSpriteFactory(DefinitionProvider<ItemDefinition> itemProvider, DefinitionProvider<ModelDefinition> modelProvider, DefinitionProvider<SpriteGroupDefinition> spriteProvider, DefinitionProvider<TextureDefinition> textureProvider, PixelBuffer<IntBuffer> pixelBuffer) {
+        this.itemProvider = itemProvider;
+        this.modelProvider = modelProvider;
+        this.spriteProvider = spriteProvider;
+        this.textureProvider = textureProvider;
+        this.pixelBuffer = pixelBuffer;
+    }
+
+    public void createSpriteToPixelBuffer(int itemId, int quantity, int border, int shadowColor,
+                               boolean noted) throws IOException {
+        if(pixelBuffer != null) {
+            SpritePixels spritePixels = createSpritePixels(itemProvider, modelProvider, spriteProvider, textureProvider,
+                    itemId, quantity, border, shadowColor, noted);
+            if (spritePixels != null) {
+                spritePixels.writeToPixelBuffer(pixelBuffer);
+            }
+        } else {
+            throw new IOException("Pixel Buffer is null.");
+        }
+    }
+
     public BufferedImage createSprite(DefinitionProvider<ItemDefinition> itemProvider,
                                       DefinitionProvider<ModelDefinition> modelProvider,
                                       DefinitionProvider<SpriteGroupDefinition> spriteProvider,

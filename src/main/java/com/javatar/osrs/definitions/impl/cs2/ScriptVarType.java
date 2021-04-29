@@ -67,7 +67,8 @@ public enum ScriptVarType {
     MAPSCENEICON('�', "mapsceneicon"),
     MAPELEMENT('�', "mapelement"),
     HITMARK('�', "hitmark"),
-    STRUCT('J', "struct");
+    STRUCT('J', "struct"),
+    NEW_TYPE0('s', "unknown1");
 
     private static final Map<Character, ScriptVarType> keyToTypeMap = new HashMap<>();
 

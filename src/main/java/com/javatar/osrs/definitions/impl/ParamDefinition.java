@@ -30,6 +30,7 @@ import com.javatar.osrs.definitions.impl.cs2.ScriptVarType;
 public class ParamDefinition implements Definition {
     private int id;
     private ScriptVarType type;
+    private char rawType;
     private boolean isMembers = true;
     private int defaultInt;
     private String defaultString;
@@ -77,5 +78,13 @@ public class ParamDefinition implements Definition {
 
     public void setDefaultString(String defaultString) {
         this.defaultString = defaultString;
+    }
+
+    public char getRawType() {
+        return rawType;
+    }
+
+    public void setRawType(char rawType) {
+        this.rawType = rawType;
     }
 }

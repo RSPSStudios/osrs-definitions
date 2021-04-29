@@ -1,8 +1,10 @@
 package com.javatar.osrs.definitions.sprites;
 
 import com.javatar.osrs.definitions.graphics.Rasterizer2D;
+import javafx.scene.image.PixelBuffer;
 
 import java.awt.image.BufferedImage;
+import java.nio.IntBuffer;
 
 class SpritePixels {
     public int[] pixels;
@@ -154,6 +156,14 @@ class SpritePixels {
 
         img.setRGB(0, 0, width, height, transPixels, 0, width);
         return img;
+    }
+
+    public void writeToPixelBuffer(PixelBuffer<IntBuffer> pixelBuffer) {
+        for (int i = 0; i < pixels.length; i++) {
+            if(pixels[i] != 0) {
+                pixelBuffer.getBuffer().put(i, pixels[i] | 0xff000000);
+            }
+        }
     }
 
 }
