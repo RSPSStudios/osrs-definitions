@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017, Adam <Adam@sigterm.info>
+ * Copyright (c) 2020, Trevor <https://github.com/Trevor159>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -25,28 +25,23 @@
 package com.javatar.osrs.definitions.impl;
 
 import com.javatar.osrs.definitions.Definition;
-import com.javatar.osrs.definitions.impl.map.Position;
-import com.javatar.osrs.definitions.impl.map.world.WorldMapTypeBase;
 
-import java.util.List;
-
-public class WorldMapDefinition implements Definition
+public class HealthBarDefinition implements Definition
 {
-	public String name;
-	public int field450;
-	public int defaultZoom;
-	public int fileId;
-	public int field453;
-	public int field454;
-	public int field456;
-	public boolean isSurface;
-	public List<WorldMapTypeBase> regionList;
-	public String safeName;
-	public Position position;
-	public int field463;
+	public int id;
+	public int field3276;
+	public int field3277 = 255;
+	public int field3278 = 255;
+	public int field3283 = -1;
+	public int field3272 = 1;
+	public int field3275 = 70;
+	public int healthBarFrontSpriteId = -1;
+	public int healthBarBackSpriteId = -1;
+	public int healthScale = 30;
+	public int healthBarPadding = 0;
 
 	@Override
 	public int getDefinitionId() {
-		return fileId;
+		return id;
 	}
 }
