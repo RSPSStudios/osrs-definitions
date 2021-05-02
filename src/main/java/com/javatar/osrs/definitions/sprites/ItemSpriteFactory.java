@@ -12,13 +12,10 @@ import com.javatar.osrs.definitions.model.Model;
 import com.javatar.osrs.definitions.textures.RSTextureProvider;
 import javafx.scene.image.Image;
 import javafx.scene.image.PixelBuffer;
-import javafx.scene.image.PixelFormat;
-import javafx.scene.image.WritableImage;
 
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.nio.IntBuffer;
-import java.util.Arrays;
 
 public class ItemSpriteFactory {
 
@@ -44,11 +41,10 @@ public class ItemSpriteFactory {
         this.pixelBuffer = pixelBuffer;
     }
 
-    public void createSpriteToPixelBuffer(int itemId, int quantity, int border, int shadowColor,
-                                          boolean noted) throws IOException {
+    public void writeSpriteToPixelBuffer(ItemDefinition item, int quantity, int border, int shadowColor,
+                                         boolean noted, PixelBuffer<IntBuffer> pixelBuffer) throws IOException {
         if (pixelBuffer != null) {
-            SpritePixels spritePixels = createSpritePixels(itemProvider, modelProvider, spriteProvider, textureProvider,
-                    itemId, quantity, border, shadowColor, noted);
+            SpritePixels spritePixels = createSpritePixels(item, quantity, border, shadowColor, noted);
             if (spritePixels != null) {
                 spritePixels.writeToPixelBuffer(pixelBuffer);
             }
@@ -57,11 +53,23 @@ public class ItemSpriteFactory {
         }
     }
 
+    public void createSpriteToPixelBuffer(int itemId, int quantity, int border, int shadowColor,
+                                          boolean noted) throws IOException {
+        if(pixelBuffer != null && itemProvider != null) {
+            writeSpriteToPixelBuffer(itemProvider.getDefinition(itemId), quantity, border, shadowColor, noted, pixelBuffer);
+        }
+    }
+
+    public void createSpriteToPixelBuffer(ItemDefinition item, int quantity, int border, int shadowColor,
+                                          boolean noted) throws IOException {
+        if(pixelBuffer != null && itemProvider != null) {
+            writeSpriteToPixelBuffer(item, quantity, border, shadowColor, noted, pixelBuffer);
+        }
+    }
+
     public Image toFXImage(int itemId, int quantity, int border, int shadowColor, boolean noted) throws IOException {
-        SpritePixels spritePixels = createSpritePixels(
-                itemProvider, modelProvider, spriteProvider, textureProvider,
-                itemId, quantity, border, shadowColor, noted
-        );
+        ItemDefinition item = itemProvider.getDefinition(itemId);
+        SpritePixels spritePixels = createSpritePixels(item, quantity, border, shadowColor, noted);
         if(spritePixels != null) {
             return spritePixels.toFXImage();
         }
@@ -74,21 +82,27 @@ public class ItemSpriteFactory {
                                       DefinitionProvider<TextureDefinition> textureProvider,
                                       int itemId, int quantity, int border, int shadowColor,
                                       boolean noted) throws IOException {
-        SpritePixels spritePixels = createSpritePixels(itemProvider, modelProvider, spriteProvider, textureProvider,
-                itemId, quantity, border, shadowColor, noted);
+        ItemDefinition item = itemProvider.getDefinition(itemId);
+        if(this.itemProvider == null) {
+            this.itemProvider = itemProvider;
+        }
+        if(this.modelProvider == null) {
+            this.modelProvider = modelProvider;
+        }
+        if(this.spriteProvider == null) {
+            this.spriteProvider = spriteProvider;
+        }
+        if(this.textureProvider == null) {
+            this.textureProvider = textureProvider;
+        }
+        SpritePixels spritePixels = createSpritePixels(item, quantity, border, shadowColor, noted);
         return spritePixels == null ? null : spritePixels.toBufferedImage();
     }
 
-    private SpritePixels createSpritePixels(DefinitionProvider<ItemDefinition> itemProvider,
-                                            DefinitionProvider<ModelDefinition> modelProvider,
-                                            DefinitionProvider<SpriteGroupDefinition> spriteProvider,
-                                            DefinitionProvider<TextureDefinition> textureProvider,
-                                            int itemId, int quantity, int border, int shadowColor,
+    private SpritePixels createSpritePixels(ItemDefinition item, int quantity, int border, int shadowColor,
                                             boolean noted) throws IOException {
-        ItemDefinition item = itemProvider.getDefinition(itemId);
-
         if(item.colorFind != null && item.colorFind.length != item.colorReplace.length) {
-            throw new IllegalStateException("Color Replace lengths should match: " + item.getId() + " - " + item.colorFind.length + " - " + item.colorReplace.length);
+            throw new IllegalStateException("Color Replace lengths should match: " + item.getId() + " - " + item.name + " - " + item.colorFind.length + " - " + item.colorReplace.length);
         }
         if(item.textureFind != null && item.textureFind.length != item.textureReplace.length) {
             throw new IllegalStateException("Texture Replace lengths should match: " + item.getId() + " - " + item.textureFind.length + " - " + item.textureReplace.length);
@@ -116,20 +130,17 @@ public class ItemSpriteFactory {
 
         SpritePixels auxSpritePixels = null;
         if (item.notedTemplate != -1) {
-            auxSpritePixels = createSpritePixels(itemProvider, modelProvider, spriteProvider, textureProvider,
-                    item.notedID, 10, 1, 0, true);
+            auxSpritePixels = createSpritePixels(itemProvider.getDefinition(item.notedID), 10, 1, 0, true);
             if (auxSpritePixels == null) {
                 return null;
             }
         } else if (item.boughtTemplateId != -1) {
-            auxSpritePixels = createSpritePixels(itemProvider, modelProvider, spriteProvider, textureProvider,
-                    item.boughtId, quantity, border, shadowColor, false);
+            auxSpritePixels = createSpritePixels(itemProvider.getDefinition(item.boughtId), quantity, border, shadowColor, false);
             if (auxSpritePixels == null) {
                 return null;
             }
         } else if (item.placeholderTemplateId != -1) {
-            auxSpritePixels = createSpritePixels(itemProvider, modelProvider, spriteProvider, textureProvider,
-                    item.placeholderId, quantity, 0, 0, false);
+            auxSpritePixels = createSpritePixels(itemProvider.getDefinition(item.placeholderId), quantity, 0, 0, false);
             if (auxSpritePixels == null) {
                 return null;
             }
