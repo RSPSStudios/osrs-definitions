@@ -24,6 +24,7 @@
  */
 package com.javatar.osrs.definitions.loaders;
 
+import com.javatar.osrs.definitions.DeserializeDefinition;
 import com.javatar.osrs.definitions.impl.WorldMapDefinition;
 import com.javatar.osrs.definitions.impl.map.Position;
 import com.javatar.osrs.definitions.impl.map.world.WorldMapTypeBase;
@@ -34,7 +35,7 @@ import com.javatar.osrs.definitions.impl.map.world.impl.WorldMapType3;
 import com.javatar.osrs.definitions.io.InputStream;
 import java.util.LinkedList;
 
-public class WorldMapLoader
+public class WorldMapLoader implements DeserializeDefinition<WorldMapDefinition>
 {
 	public WorldMapDefinition load(byte[] b, int fileId)
 	{
@@ -167,5 +168,10 @@ public class WorldMapLoader
 		wm.chunk_newYHigh = in.readUnsignedByte();
 
 		return wm;
+	}
+
+	@Override
+	public WorldMapDefinition deserialize(int id, byte[] b) {
+		return load(b, id);
 	}
 }

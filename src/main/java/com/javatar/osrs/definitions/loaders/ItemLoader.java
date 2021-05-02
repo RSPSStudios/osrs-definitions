@@ -43,7 +43,6 @@ public class ItemLoader implements DeserializeDefinition<ItemDefinition> {
             if (opcode == 0) {
                 break;
             }
-
             this.decodeValues(opcode, def, is);
         }
 
