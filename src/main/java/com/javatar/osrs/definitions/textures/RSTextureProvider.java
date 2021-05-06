@@ -1,6 +1,6 @@
 package com.javatar.osrs.definitions.textures;
 
-import com.javatar.definition.DefinitionProvider;
+import com.javatar.osrs.definitions.definition.DefinitionProvider;
 import com.javatar.osrs.definitions.impl.SpriteDefinition;
 import com.javatar.osrs.definitions.impl.SpriteGroupDefinition;
 import com.javatar.osrs.definitions.impl.TextureDefinition;

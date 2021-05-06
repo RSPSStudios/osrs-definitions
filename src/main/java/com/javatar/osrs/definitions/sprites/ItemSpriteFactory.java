@@ -1,6 +1,6 @@
 package com.javatar.osrs.definitions.sprites;
 
-import com.javatar.definition.DefinitionProvider;
+import com.javatar.osrs.definitions.definition.DefinitionProvider;
 import com.javatar.osrs.definitions.graphics.Graphics3D;
 import com.javatar.osrs.definitions.impl.ItemDefinition;
 import com.javatar.osrs.definitions.impl.ModelDefinition;
@@ -26,11 +26,16 @@ public class ItemSpriteFactory {
 
     private PixelBuffer<IntBuffer> pixelBuffer;
 
+    private int width;
+    private int height;
+
     public ItemSpriteFactory(DefinitionProvider<ItemDefinition> itemProvider, DefinitionProvider<ModelDefinition> modelProvider, DefinitionProvider<SpriteGroupDefinition> spriteProvider, DefinitionProvider<TextureDefinition> textureProvider) {
         this.itemProvider = itemProvider;
         this.modelProvider = modelProvider;
         this.spriteProvider = spriteProvider;
         this.textureProvider = textureProvider;
+        this.width = 36;
+        this.width = 32;
     }
 
     public ItemSpriteFactory(DefinitionProvider<ItemDefinition> itemProvider, DefinitionProvider<ModelDefinition> modelProvider, DefinitionProvider<SpriteGroupDefinition> spriteProvider, DefinitionProvider<TextureDefinition> textureProvider, PixelBuffer<IntBuffer> pixelBuffer) {
@@ -39,6 +44,27 @@ public class ItemSpriteFactory {
         this.spriteProvider = spriteProvider;
         this.textureProvider = textureProvider;
         this.pixelBuffer = pixelBuffer;
+        this.width = 36;
+        this.height = 32;
+    }
+
+    public ItemSpriteFactory(DefinitionProvider<ItemDefinition> itemProvider, DefinitionProvider<ModelDefinition> modelProvider, DefinitionProvider<SpriteGroupDefinition> spriteProvider, DefinitionProvider<TextureDefinition> textureProvider, int width, int height) {
+        this.itemProvider = itemProvider;
+        this.modelProvider = modelProvider;
+        this.spriteProvider = spriteProvider;
+        this.textureProvider = textureProvider;
+        this.width = width;
+        this.height = height;
+    }
+
+    public ItemSpriteFactory(DefinitionProvider<ItemDefinition> itemProvider, DefinitionProvider<ModelDefinition> modelProvider, DefinitionProvider<SpriteGroupDefinition> spriteProvider, DefinitionProvider<TextureDefinition> textureProvider, PixelBuffer<IntBuffer> pixelBuffer, int width, int height) {
+        this.itemProvider = itemProvider;
+        this.modelProvider = modelProvider;
+        this.spriteProvider = spriteProvider;
+        this.textureProvider = textureProvider;
+        this.pixelBuffer = pixelBuffer;
+        this.width = width;
+        this.height = height;
     }
 
     public void writeSpriteToPixelBuffer(ItemDefinition item, int quantity, int border, int shadowColor,
@@ -55,14 +81,14 @@ public class ItemSpriteFactory {
 
     public void createSpriteToPixelBuffer(int itemId, int quantity, int border, int shadowColor,
                                           boolean noted) throws IOException {
-        if(pixelBuffer != null && itemProvider != null) {
+        if (pixelBuffer != null && itemProvider != null) {
             writeSpriteToPixelBuffer(itemProvider.getDefinition(itemId), quantity, border, shadowColor, noted, pixelBuffer);
         }
     }
 
     public void createSpriteToPixelBuffer(ItemDefinition item, int quantity, int border, int shadowColor,
                                           boolean noted) throws IOException {
-        if(pixelBuffer != null && itemProvider != null) {
+        if (pixelBuffer != null && itemProvider != null) {
             writeSpriteToPixelBuffer(item, quantity, border, shadowColor, noted, pixelBuffer);
         }
     }
@@ -70,7 +96,7 @@ public class ItemSpriteFactory {
     public Image toFXImage(int itemId, int quantity, int border, int shadowColor, boolean noted) throws IOException {
         ItemDefinition item = itemProvider.getDefinition(itemId);
         SpritePixels spritePixels = createSpritePixels(item, quantity, border, shadowColor, noted);
-        if(spritePixels != null) {
+        if (spritePixels != null) {
             return spritePixels.toFXImage();
         }
         return null;
@@ -83,16 +109,16 @@ public class ItemSpriteFactory {
                                       int itemId, int quantity, int border, int shadowColor,
                                       boolean noted) throws IOException {
         ItemDefinition item = itemProvider.getDefinition(itemId);
-        if(this.itemProvider == null) {
+        if (this.itemProvider == null) {
             this.itemProvider = itemProvider;
         }
-        if(this.modelProvider == null) {
+        if (this.modelProvider == null) {
             this.modelProvider = modelProvider;
         }
-        if(this.spriteProvider == null) {
+        if (this.spriteProvider == null) {
             this.spriteProvider = spriteProvider;
         }
-        if(this.textureProvider == null) {
+        if (this.textureProvider == null) {
             this.textureProvider = textureProvider;
         }
         SpritePixels spritePixels = createSpritePixels(item, quantity, border, shadowColor, noted);
@@ -101,10 +127,10 @@ public class ItemSpriteFactory {
 
     private SpritePixels createSpritePixels(ItemDefinition item, int quantity, int border, int shadowColor,
                                             boolean noted) throws IOException {
-        if(item.colorFind != null && item.colorFind.length != item.colorReplace.length) {
+        if (item.colorFind != null && item.colorFind.length != item.colorReplace.length) {
             throw new IllegalStateException("Color Replace lengths should match: " + item.getId() + " - " + item.name + " - " + item.colorFind.length + " - " + item.colorReplace.length);
         }
-        if(item.textureFind != null && item.textureFind.length != item.textureReplace.length) {
+        if (item.textureFind != null && item.textureFind.length != item.textureReplace.length) {
             throw new IllegalStateException("Texture Replace lengths should match: " + item.getId() + " - " + item.textureFind.length + " - " + item.textureReplace.length);
         }
 
@@ -148,10 +174,10 @@ public class ItemSpriteFactory {
 
         RSTextureProvider rsTextureProvider = new RSTextureProvider(textureProvider, spriteProvider);
 
-        SpritePixels spritePixels = new SpritePixels(36, 32);
+        SpritePixels spritePixels = new SpritePixels(width, height);
         Graphics3D graphics = new Graphics3D(rsTextureProvider);
         graphics.setBrightness(0.6d);
-        graphics.setRasterBuffer(spritePixels.pixels, 36, 32);
+        graphics.setRasterBuffer(spritePixels.pixels, width, height);
         graphics.reset();
         graphics.setRasterClipping();
         graphics.setOffset(16, 16);
@@ -194,7 +220,7 @@ public class ItemSpriteFactory {
             spritePixels.drawShadow(shadowColor);
         }
 
-        graphics.setRasterBuffer(spritePixels.pixels, 36, 32);
+        graphics.setRasterBuffer(spritePixels.pixels, width, height);
         if (item.notedTemplate != -1) {
             assert auxSpritePixels != null;
             auxSpritePixels.drawAtOn(graphics, 0, 0);

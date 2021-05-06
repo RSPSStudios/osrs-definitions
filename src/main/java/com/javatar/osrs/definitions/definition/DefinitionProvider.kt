@@ -1,4 +1,4 @@
-package com.javatar.definition
+package com.javatar.osrs.definitions.definition
 
 import com.javatar.osrs.definitions.Definition
 

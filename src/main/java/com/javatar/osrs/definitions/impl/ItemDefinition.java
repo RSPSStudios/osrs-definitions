@@ -479,21 +479,21 @@ public class ItemDefinition implements Definition {
         this.params = params;
     }
 
-    public void updateNote(ItemDefinition notedItem, ItemDefinition unnotedItem) {
-        this.inventoryModel = notedItem.inventoryModel;
-        this.zoom2d = notedItem.zoom2d;
-        this.xan2d = notedItem.xan2d;
-        this.yan2d = notedItem.yan2d;
-        this.zan2d = notedItem.zan2d;
-        this.xOffset2d = notedItem.xOffset2d;
-        this.yOffset2d = notedItem.yOffset2d;
-        this.colorFind = notedItem.colorFind;
-        this.colorReplace = notedItem.colorReplace;
-        this.textureFind = notedItem.textureFind;
-        this.textureReplace = notedItem.textureReplace;
-        this.name = unnotedItem.name;
-        this.members = unnotedItem.members;
-        this.cost = unnotedItem.cost;
+    public void updateNote(ItemDefinition template, ItemDefinition notedItem) {
+        this.inventoryModel = template.inventoryModel;
+        this.zoom2d = template.zoom2d;
+        this.xan2d = template.xan2d;
+        this.yan2d = template.yan2d;
+        this.zan2d = template.zan2d;
+        this.xOffset2d = template.xOffset2d;
+        this.yOffset2d = template.yOffset2d;
+        this.colorFind = template.colorFind;
+        this.colorReplace = template.colorReplace;
+        this.textureFind = template.textureFind;
+        this.textureReplace = template.textureReplace;
+        this.name = notedItem.name;
+        this.members = notedItem.members;
+        this.cost = notedItem.cost;
         this.stackable = 1;
     }
 
