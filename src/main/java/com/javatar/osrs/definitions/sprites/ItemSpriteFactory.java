@@ -134,7 +134,7 @@ public class ItemSpriteFactory {
             throw new IllegalStateException("Texture Replace lengths should match: " + item.getId() + " - " + item.textureFind.length + " - " + item.textureReplace.length);
         }
 
-        if (quantity > 1 && item.countObj != null) {
+        if (quantity > 1 && item.countObj != null && item.countObj.length > 0) {
             int stackItemID = -1;
 
             for (int i = 0; i < 10; ++i) {

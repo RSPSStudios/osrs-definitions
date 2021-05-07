@@ -27,6 +27,7 @@ package com.javatar.osrs.definitions.impl;
 
 import com.javatar.osrs.definitions.Definition;
 
+import java.util.Arrays;
 import java.util.Map;
 
 public class ItemDefinition implements Definition {
@@ -502,4 +503,56 @@ public class ItemDefinition implements Definition {
         return this.id;
     }
 
+    @Override
+    public String toString() {
+        return "ItemDefinition{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", resizeX=" + resizeX +
+                ", resizeY=" + resizeY +
+                ", resizeZ=" + resizeZ +
+                ", xan2d=" + xan2d +
+                ", yan2d=" + yan2d +
+                ", zan2d=" + zan2d +
+                ", cost=" + cost +
+                ", isTradeable=" + isTradeable +
+                ", stackable=" + stackable +
+                ", inventoryModel=" + inventoryModel +
+                ", members=" + members +
+                ", colorFind=" + Arrays.toString(colorFind) +
+                ", colorReplace=" + Arrays.toString(colorReplace) +
+                ", textureFind=" + Arrays.toString(textureFind) +
+                ", textureReplace=" + Arrays.toString(textureReplace) +
+                ", zoom2d=" + zoom2d +
+                ", xOffset2d=" + xOffset2d +
+                ", yOffset2d=" + yOffset2d +
+                ", ambient=" + ambient +
+                ", contrast=" + contrast +
+                ", countCo=" + Arrays.toString(countCo) +
+                ", countObj=" + Arrays.toString(countObj) +
+                ", options=" + Arrays.toString(options) +
+                ", interfaceOptions=" + Arrays.toString(interfaceOptions) +
+                ", maleModel0=" + maleModel0 +
+                ", maleModel1=" + maleModel1 +
+                ", maleModel2=" + maleModel2 +
+                ", maleOffset=" + maleOffset +
+                ", maleHeadModel=" + maleHeadModel +
+                ", maleHeadModel2=" + maleHeadModel2 +
+                ", femaleModel0=" + femaleModel0 +
+                ", femaleModel1=" + femaleModel1 +
+                ", femaleModel2=" + femaleModel2 +
+                ", femaleOffset=" + femaleOffset +
+                ", femaleHeadModel=" + femaleHeadModel +
+                ", femaleHeadModel2=" + femaleHeadModel2 +
+                ", notedID=" + notedID +
+                ", notedTemplate=" + notedTemplate +
+                ", team=" + team +
+                ", shiftClickDropIndex=" + shiftClickDropIndex +
+                ", boughtId=" + boughtId +
+                ", boughtTemplateId=" + boughtTemplateId +
+                ", placeholderId=" + placeholderId +
+                ", placeholderTemplateId=" + placeholderTemplateId +
+                ", params=" + params +
+                '}';
+    }
 }
