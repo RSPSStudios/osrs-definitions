@@ -4,11 +4,30 @@ import com.javatar.osrs.definitions.impl.SpriteDefinition
 import com.javatar.osrs.definitions.impl.SpriteGroupDefinition
 import javafx.scene.image.Image
 import javafx.scene.image.PixelFormat
+import javafx.scene.image.WritableImage
 import java.awt.image.BufferedImage
 import java.io.File
 import javax.imageio.ImageIO
 
 object SpriteTools {
+
+    fun SpriteDefinition.toImage() : Image {
+        if(width > 0 && height > 0) {
+            val image = WritableImage(width, height)
+            image.pixelWriter.setPixels(
+                0,
+                0,
+                width,
+                height,
+                PixelFormat.getIntArgbInstance(),
+                pixels,
+                0,
+                width
+            )
+            return image
+        }
+        return WritableImage(1, 1)
+    }
 
     fun fromFXImage(group: SpriteGroupDefinition = SpriteGroupDefinition(), vararg images: Image) : SpriteGroupDefinition {
         group.width = images.maxOf { it.width }.toInt()

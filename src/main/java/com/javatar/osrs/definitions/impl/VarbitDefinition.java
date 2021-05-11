@@ -26,6 +26,8 @@ package com.javatar.osrs.definitions.impl;
 
 import com.javatar.osrs.definitions.Definition;
 
+import java.util.BitSet;
+
 public class VarbitDefinition implements Definition {
     private int id;
     private int index;

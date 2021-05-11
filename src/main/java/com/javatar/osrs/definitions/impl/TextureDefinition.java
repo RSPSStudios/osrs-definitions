@@ -33,8 +33,8 @@ public class TextureDefinition implements Definition {
     public int[] field1780;
     public int[] field1781;
     public int[] field1786;
-    public int field1782;
-    public int field1783;
+    public int animationSpeed;
+    public int animationDirection;
     public transient int[] pixels;
     private int id;
     private int[] fileIds;
@@ -92,20 +92,20 @@ public class TextureDefinition implements Definition {
         this.field1786 = field1786;
     }
 
-    public int getField1782() {
-        return field1782;
+    public int getAnimationSpeed() {
+        return animationSpeed;
     }
 
-    public void setField1782(int field1782) {
-        this.field1782 = field1782;
+    public void setAnimationSpeed(int animationSpeed) {
+        this.animationSpeed = animationSpeed;
     }
 
-    public int getField1783() {
-        return field1783;
+    public int getAnimationDirection() {
+        return animationDirection;
     }
 
-    public void setField1783(int field1783) {
-        this.field1783 = field1783;
+    public void setAnimationDirection(int animationDirection) {
+        this.animationDirection = animationDirection;
     }
 
     public int[] getPixels() {

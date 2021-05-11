@@ -68,8 +68,8 @@ public class TextureLoader implements DeserializeDefinition<TextureDefinition> {
             def.field1786[var3] = is.readInt();
         }
 
-        def.field1783 = is.readUnsignedByte();
-        def.field1782 = is.readUnsignedByte();
+        def.animationDirection = is.readUnsignedByte();
+        def.animationSpeed = is.readUnsignedByte();
 
         return def;
     }
