@@ -43,8 +43,8 @@ public class ObjectDefinition implements Definition {
     private short[] textureToReplace;
     private int sizeX = 1;
     private int sizeY = 1;
-    private int anInt2083 = 0;
-    private int[] anIntArray2084;
+    private int soundEffectRadius = 0;
+    private int[] soundEffectIds;
     private int offsetX = 0;
     private boolean mergeNormals = false;
     private int wallOrDoor = -1;
@@ -183,20 +183,20 @@ public class ObjectDefinition implements Definition {
         this.sizeY = sizeY;
     }
 
-    public int getAnInt2083() {
-        return anInt2083;
+    public int getSoundEffectRadius() {
+        return soundEffectRadius;
     }
 
-    public void setAnInt2083(int anInt2083) {
-        this.anInt2083 = anInt2083;
+    public void setSoundEffectRadius(int soundEffectRadius) {
+        this.soundEffectRadius = soundEffectRadius;
     }
 
-    public int[] getAnIntArray2084() {
-        return anIntArray2084;
+    public int[] getSoundEffectIds() {
+        return soundEffectIds;
     }
 
-    public void setAnIntArray2084(int[] anIntArray2084) {
-        this.anIntArray2084 = anIntArray2084;
+    public void setSoundEffectIds(int[] soundEffectIds) {
+        this.soundEffectIds = soundEffectIds;
     }
 
     public int getOffsetX() {

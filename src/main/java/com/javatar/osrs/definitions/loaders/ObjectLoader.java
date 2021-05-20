@@ -198,19 +198,19 @@ public class ObjectLoader implements DeserializeDefinition<ObjectDefinition> {
             def.setConfigChangeDest(configChangeDest);
         } else if (opcode == 78) {
             def.setAmbientSoundId(is.readUnsignedShort());
-            def.setAnInt2083(is.readUnsignedByte());
+            def.setSoundEffectRadius(is.readUnsignedByte());
         } else if (opcode == 79) {
             def.setAnInt2112(is.readUnsignedShort());
             def.setAnInt2113(is.readUnsignedShort());
-            def.setAnInt2083(is.readUnsignedByte());
+            def.setSoundEffectRadius(is.readUnsignedByte());
             int length = is.readUnsignedByte();
-            int[] anIntArray2084 = new int[length];
+            int[] soundEffectIds = new int[length];
 
             for (int index = 0; index < length; ++index) {
-                anIntArray2084[index] = is.readUnsignedShort();
+                soundEffectIds[index] = is.readUnsignedShort();
             }
 
-            def.setAnIntArray2084(anIntArray2084);
+            def.setSoundEffectIds(soundEffectIds);
         } else if (opcode == 81) {
             def.setContouredGround(is.readUnsignedByte() * 256);
         } else if (opcode == 82) {
