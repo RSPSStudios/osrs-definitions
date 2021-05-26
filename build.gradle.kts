@@ -8,7 +8,7 @@ plugins {
 }
 
 group = "com.javatar"
-version = "0.1"
+version = "0.1-SNAPSHOT"
 
 repositories {
     mavenCentral()
@@ -27,10 +27,16 @@ dependencies {
 publishing {
     publications {
         create<MavenPublication>("maven") {
-            groupId = "com.javatar"
-            artifactId = "osrs-definitions"
-            version = "0.1"
             from(components["java"])
+        }
+    }
+    repositories {
+        maven {
+            url = uri("http://legionkt.com:8085/repository/maven-snapshots/")
+            credentials {
+                username = project.properties["myNexusUsername"] as String
+                password = project.properties["myNexusPassword"] as String
+            }
         }
     }
 }

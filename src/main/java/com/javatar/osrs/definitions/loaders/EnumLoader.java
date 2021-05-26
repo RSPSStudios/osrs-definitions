@@ -31,15 +31,12 @@ import com.javatar.osrs.definitions.io.InputStream;
 
 public class EnumLoader implements DeserializeDefinition<EnumDefinition> {
     public EnumDefinition load(int id, byte[] b) {
-        if (b.length == 1 && b[0] == 0) {
-            return null;
-        }
-
         EnumDefinition def = new EnumDefinition();
-        InputStream is = new InputStream(b);
-
         def.setId(id);
-
+        if (b.length == 1 && b[0] == 0) {
+            return def;
+        }
+        InputStream is = new InputStream(b);
         for (; ; ) {
             int opcode = is.readUnsignedByte();
             if (opcode == 0) {
