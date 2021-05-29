@@ -7,8 +7,10 @@ plugins {
     id("org.openjfx.javafxplugin") version "0.0.9"
 }
 
-group = "com.javatar"
-version = "0.1-SNAPSHOT"
+allprojects {
+    group = "com.javatar"
+    version = "1.0-SNAPSHOT"
+}
 
 repositories {
     mavenCentral()
@@ -26,7 +28,7 @@ dependencies {
 
 publishing {
     publications {
-        create<MavenPublication>("maven") {
+        create<MavenPublication>("mavenJava") {
             from(components["java"])
         }
     }

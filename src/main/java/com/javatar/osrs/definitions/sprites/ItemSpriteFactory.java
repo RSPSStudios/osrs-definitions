@@ -35,7 +35,7 @@ public class ItemSpriteFactory {
         this.spriteProvider = spriteProvider;
         this.textureProvider = textureProvider;
         this.width = 36;
-        this.width = 32;
+        this.height = 32;
     }
 
     public ItemSpriteFactory(DefinitionProvider<ItemDefinition> itemProvider, DefinitionProvider<ModelDefinition> modelProvider, DefinitionProvider<SpriteGroupDefinition> spriteProvider, DefinitionProvider<TextureDefinition> textureProvider, PixelBuffer<IntBuffer> pixelBuffer) {
