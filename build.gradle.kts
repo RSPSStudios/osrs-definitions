@@ -26,6 +26,7 @@ dependencies {
     implementation(kotlin("stdlib-jdk8"))
 }
 
+/*
 publishing {
     publications {
         create<MavenPublication>("mavenJava") {
@@ -41,4 +42,4 @@ publishing {
             }
         }
     }
-}
+}*/
