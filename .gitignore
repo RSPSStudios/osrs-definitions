@@ -1,5 +1,4 @@
 build
-gradle/wrapper/*.jar
 .idea
 .gradle
 gradle.properties
