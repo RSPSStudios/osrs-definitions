@@ -31,6 +31,7 @@ import com.javatar.osrs.definitions.Definition;
 import java.util.Map;
 
 public class ObjectDefinition implements Definition {
+    private int category;
     private int id;
     private short[] retextureToFind;
     private int decorDisplacement = 16;
@@ -453,4 +454,11 @@ public class ObjectDefinition implements Definition {
     }
 
 
+    public int getCategory() {
+        return category;
+    }
+
+    public void setCategory(int category) {
+        this.category = category;
+    }
 }

@@ -26,7 +26,6 @@ dependencies {
     implementation(kotlin("stdlib-jdk8"))
 }
 
-/*
 publishing {
     publications {
         create<MavenPublication>("mavenJava") {
@@ -35,6 +34,7 @@ publishing {
     }
     repositories {
         maven {
+            isAllowInsecureProtocol = true
             url = uri("http://legionkt.com:8085/repository/maven-snapshots/")
             credentials {
                 username = project.properties["myNexusUsername"] as String
@@ -42,4 +42,4 @@ publishing {
             }
         }
     }
-}*/
+}

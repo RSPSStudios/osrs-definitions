@@ -102,6 +102,8 @@ public class ItemDefinition implements Definition {
     public int placeholderTemplateId = -1;
 
     public Map<Integer, Object> params = null;
+    public String unknownString;
+    public int category;
 
     public ItemDefinition(int id) {
         this.id = id;

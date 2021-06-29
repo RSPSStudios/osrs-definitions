@@ -70,6 +70,8 @@ public class ItemLoader implements DeserializeDefinition<ItemDefinition> {
             if (def.yOffset2d > 32767) {
                 def.yOffset2d -= 65536;
             }
+        } else if (opcode == 9) {
+            def.unknownString = stream.readString();
         } else if (opcode == 11) {
             def.stackable = 1;
         } else if (opcode == 12) {
@@ -129,6 +131,8 @@ public class ItemLoader implements DeserializeDefinition<ItemDefinition> {
             def.maleHeadModel2 = stream.readUnsignedShort();
         } else if (opcode == 93) {
             def.femaleHeadModel2 = stream.readUnsignedShort();
+        } else if (opcode == 94) {
+            def.category = stream.readUnsignedShort();
         } else if (opcode == 95) {
             def.zan2d = stream.readUnsignedShort();
         } else if (opcode == 97) {
